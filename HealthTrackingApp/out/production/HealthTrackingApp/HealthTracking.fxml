@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HealthTrackingController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Label text="Weight (kg):" />
+    <TextField fx:id="weightInput" promptText="Enter weight" />
+    <Label text="Height (cm):" />
+    <TextField fx:id="heightInput" promptText="Enter height" />
+    <Button fx:id="recordButton" text="Record Health Data" onAction="#handleRecordButton" />
+    <Label fx:id="resultLabel" text="Result:" />
+</VBox>

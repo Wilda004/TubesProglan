@@ -1,0 +1,37 @@
+/* styles.css */
+
+.root {
+    -fx-background-color: #f0f0f0; /* Light gray background color */
+}
+
+.welcome-label {
+    -fx-font-size: 24pt;
+    -fx-fill: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Gradient text color */
+}
+
+.start-button {
+    -fx-font-size: 12pt;
+    -fx-background-color: #3366cc; /* Blue button background color */
+    -fx-text-fill: white; /* White button text color */
+}
+
+.header-label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333; /* Dark gray text color */
+}
+
+.input-field {
+    -fx-font-size: 12pt;
+    -fx-prompt-text-fill: #999999; /* Light gray prompt text color */
+}
+
+.record-button {
+    -fx-font-size: 12pt;
+    -fx-background-color: #4CAF50; /* Green button background color */
+    -fx-text-fill: white; /* White button text color */
+}
+
+.result-label {
+    -fx-font-size: 11pt;
+    -fx-text-fill: #0073e6; /* Blue text color */
+}
