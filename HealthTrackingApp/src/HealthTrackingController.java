@@ -3,6 +3,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class HealthTrackingController {
 
     @FXML
@@ -14,25 +18,13 @@ public class HealthTrackingController {
     @FXML
     private Label resultLabel;
 
-
+    /**
+     * Menghandle aksi ketika tombol "Record Health Data" ditekan.
+     *
+     * @param event Aksi yang terjadi, dalam hal ini, ketika tombol ditekan.
+     */
     @FXML
     private void handleRecordButton(ActionEvent event) {
-        // Informal Specification:
-        // - Ketika tombol "Record Health Data" ditekan, aplikasi akan menghitung dan menampilkan BMI.
-
-        // Error Correctness:
-        // - Jika input berat atau tinggi tidak valid (bukan angka), aplikasi akan menampilkan pesan kesalahan.
-
-        // Code Review:
-        // - Metode ini menangani peristiwa dari tombol dan melakukan pemrosesan input.
-
-        // Defensive Programming:
-        // - Melakukan validasi input untuk memastikan bahwa input berupa angka.
-
-        // Testing:
-        // - Pada tahap ini, belum ada pengujian yang dilakukan. Pengujian dapat diperluas dengan mencakup
-        //   skenario pengujian untuk kasus valid dan tidak valid.
-
         String weightText = weightInput.getText();
         String heightText = heightInput.getText();
 
@@ -43,16 +35,25 @@ public class HealthTrackingController {
             double height = Double.parseDouble(heightText) / 100; // Convert cm to meters
 
             double bmi = calculateBMI(weight, height);
-            resultLabel.setText("BMI: " + bmi + " - " + interpretBMI(bmi));
+            String interpretation = interpretBMI(bmi);
+            resultLabel.setText("BMI: " + bmi + " - " + interpretation);
+
+            // Save to file
+            saveToFile(bmi, interpretation);
         } else {
             // Display error message for invalid input
             resultLabel.setText("Error: Masukkan angka!");
         }
     }
 
+    /**
+     * Memeriksa apakah input adalah angka yang valid.
+     *
+     * @param input String yang akan diperiksa apakah dapat diubah menjadi angka.
+     * @return True jika input adalah angka, False jika tidak.
+     */
     private boolean isValidInput(String input) {
-        // Defensive Programming:
-        // - Basic validation for numeric input
+        // Basic validation for numeric input
         try {
             Double.parseDouble(input);
             return true;
@@ -61,19 +62,26 @@ public class HealthTrackingController {
         }
     }
 
+    /**
+     * Menghitung BMI berdasarkan berat dan tinggi.
+     *
+     * @param weight Berat badan dalam kilogram.
+     * @param height Tinggi badan dalam meter.
+     * @return Indeks Massa Tubuh (BMI) yang dihitung.
+     */
     private double calculateBMI(double weight, double height) {
-        // Formal Program Specification with Hoare Triple:
-        // - Precondition: weight and height are valid numeric values.
-        // - Postcondition: Returns the calculated BMI based on weight and height.
-
         // Simple BMI calculation
         return weight / (height * height);
     }
 
+    /**
+     * Menginterpretasi kategori BMI.
+     *
+     * @param bmi Indeks Massa Tubuh (BMI).
+     * @return Interpretasi kategori BMI.
+     */
     private String interpretBMI(double bmi) {
-        // Informal Specification:
-        // - Interpretation of BMI categories
-
+        // Interpretation of BMI categories
         if (bmi < 18.5) {
             return "Underweight";
         } else if (bmi <= 22.9) {
@@ -84,6 +92,19 @@ public class HealthTrackingController {
             return "Obese";
         }
     }
+
+    /**
+     * Menyimpan hasil BMI ke file teks.
+     *
+     * @param bmi            Indeks Massa Tubuh (BMI).
+     * @param interpretation Interpretasi kategori BMI.
+     */
+    private void saveToFile(double bmi, String interpretation) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("HealthTrackingApp/src/Record.txt", true))) {
+            // Append BMI result to the file
+            writer.write("BMI: " + bmi + " - " + interpretation + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

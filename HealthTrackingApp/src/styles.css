@@ -32,6 +32,6 @@
 }
 
 .result-label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 9pt;
     -fx-text-fill: #0073e6; /* Blue text color */
 }
