@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * HealthTrackingApp adalah aplikasi JavaFX untuk melacak kesehatan dan menghitung BMI (Body Mass Index).
+ * HealthTrackingApp adalah aplikasi JavaFX untuk menghitung BMI (Body Mass Index).
  * Aplikasi ini memiliki antarmuka pengguna sederhana dengan kolom input untuk berat dan tinggi badan.
  * Dibuat menggunakan JavaFX dan FXML.
  *

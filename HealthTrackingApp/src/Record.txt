@@ -1,0 +1,2 @@
+BMI: 21.484374999999996 - Normal Weight
+BMI: 21.224489795918366 - Berat Normal

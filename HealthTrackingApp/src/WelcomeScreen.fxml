@@ -15,6 +15,6 @@
         <URL value="@styles.css" />
     </stylesheets>
 
-    <Label text="Halo, Selamat Datang!" styleClass="header-label" style="-fx-fill: linear-gradient(to right, #3498db, #e74c3c, #9b59b6); "/>
+    <Label text="Halo, Selamat Datang di Welcome!" styleClass="header-label" style="-fx-fill: linear-gradient(to right, #3498db, #e74c3c, #9b59b6); "/>
     <Button fx:id="startButton" text="Start" onAction="#handleStartButton" styleClass="start-button" />
 </VBox>

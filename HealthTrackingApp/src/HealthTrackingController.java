@@ -28,20 +28,20 @@ public class HealthTrackingController {
         String weightText = weightInput.getText();
         String heightText = heightInput.getText();
 
-        // Validate input
+        // Validasi input
         if (isValidInput(weightText) && isValidInput(heightText)) {
-            // Process input and update result label
+            // Proses input dan perbarui label hasil
             double weight = Double.parseDouble(weightText);
-            double height = Double.parseDouble(heightText) / 100; // Convert cm to meters
+            double height = Double.parseDouble(heightText) / 100; // Konversi cm ke meter
 
             double bmi = calculateBMI(weight, height);
             String interpretation = interpretBMI(bmi);
             resultLabel.setText("BMI: " + bmi + " - " + interpretation);
 
-            // Save to file
+            // Simpan ke file
             saveToFile(bmi, interpretation);
         } else {
-            // Display error message for invalid input
+            // Tampilkan pesan kesalahan untuk input yang tidak valid
             resultLabel.setText("Error: Masukkan angka!");
         }
     }
@@ -52,13 +52,13 @@ public class HealthTrackingController {
      * @param input String yang akan diperiksa apakah dapat diubah menjadi angka.
      * @return True jika input adalah angka, False jika tidak.
      */
-    private boolean isValidInput(String input) {
-        // Basic validation for numeric input
+    public boolean isValidInput(String input) {
+        // Defensive Programming: Validasi dasar untuk input numerik
         try {
             Double.parseDouble(input);
             return true;
         } catch (NumberFormatException e) {
-            return false;
+            return false; // Jika input tidak dapat diubah menjadi double, anggap tidak valid
         }
     }
 
@@ -69,8 +69,8 @@ public class HealthTrackingController {
      * @param height Tinggi badan dalam meter.
      * @return Indeks Massa Tubuh (BMI) yang dihitung.
      */
-    private double calculateBMI(double weight, double height) {
-        // Simple BMI calculation
+    public double calculateBMI(double weight, double height) {
+        // Perhitungan BMI sederhana
         return weight / (height * height);
     }
 
@@ -80,8 +80,8 @@ public class HealthTrackingController {
      * @param bmi Indeks Massa Tubuh (BMI).
      * @return Interpretasi kategori BMI.
      */
-    private String interpretBMI(double bmi) {
-        // Interpretation of BMI categories
+    public String interpretBMI(double bmi) {
+        // Interpretasi kategori BMI
         if (bmi < 18.5) {
             return "Underweight";
         } else if (bmi <= 22.9) {
@@ -96,15 +96,15 @@ public class HealthTrackingController {
     /**
      * Menyimpan hasil BMI ke file teks.
      *
-     * @param bmi            Indeks Massa Tubuh (BMI).
+     * @param bmi Indeks Massa Tubuh (BMI).
      * @param interpretation Interpretasi kategori BMI.
      */
     private void saveToFile(double bmi, String interpretation) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("HealthTrackingApp/src/Record.txt", true))) {
-            // Append BMI result to the file
+            // Tambahkan hasil BMI ke file
             writer.write("BMI: " + bmi + " - " + interpretation + "\n");
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Cetak jejak stack jika terjadi IOException
         }
     }
 }
