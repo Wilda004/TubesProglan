@@ -27,7 +27,7 @@ public class HealthTrackingControllerTest {
     void testInterpretBMI() {
         HealthTrackingController controller = new HealthTrackingController();
         String interpretation = controller.interpretBMI(18);
-        assertEquals("Kurus", interpretation);
+        assertEquals("Underweight", interpretation);
     }
 }
 
